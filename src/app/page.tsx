@@ -1,4 +1,3 @@
-import { HackathonCard } from "@/components/hackathon-card";
 import BlurFade from "@/components/magicui/blur-fade";
 import BlurFadeText from "@/components/magicui/blur-fade-text";
 import { ProjectCard } from "@/components/project-card";
@@ -48,31 +47,6 @@ export default function Page() {
             {DATA.summary}
           </Markdown>
         </BlurFade>
-      </section>
-      <section id="work">
-        <div className="flex min-h-0 flex-col gap-y-3">
-          <BlurFade delay={BLUR_FADE_DELAY * 5}>
-            <h2 className="text-xl font-bold">Work Experience</h2>
-          </BlurFade>
-          {DATA.work.map((work, id) => (
-            <BlurFade
-              key={work.company}
-              delay={BLUR_FADE_DELAY * 6 + id * 0.05}
-            >
-              <ResumeCard
-                key={work.company}
-                logoUrl={work.logoUrl}
-                altText={work.company}
-                title={work.company}
-                subtitle={work.title}
-                href={work.href}
-                badges={work.badges}
-                period={`${work.start} - ${work.end ?? "Present"}`}
-                description={work.description}
-              />
-            </BlurFade>
-          ))}
-        </div>
       </section>
       <section id="education">
         <div className="flex min-h-0 flex-col gap-y-3">
@@ -152,69 +126,69 @@ export default function Page() {
           </div>
         </div>
       </section>
-      <section id="hackathons">
-        <div className="space-y-12 w-full py-12">
+      <section id="research">
+        <div className="flex min-h-0 flex-col gap-y-3">
           <BlurFade delay={BLUR_FADE_DELAY * 13}>
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
-                  Hackathons
-                </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                  I like building things
-                </h2>
-                <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  During my time in university, I attended{" "}
-                  {DATA.hackathons.length}+ hackathons. People from around the
-                  country would come together and build incredible things in 2-3
-                  days. It was eye-opening to see the endless possibilities
-                  brought to life by a group of motivated and passionate
-                  individuals.
-                </p>
-              </div>
-            </div>
+            <h2 className="text-xl font-bold">Research Experience</h2>
           </BlurFade>
-          <BlurFade delay={BLUR_FADE_DELAY * 14}>
-            <ul className="mb-4 ml-4 divide-y divide-dashed border-l">
-              {DATA.hackathons.map((project, id) => (
-                <BlurFade
-                  key={project.title + project.dates}
-                  delay={BLUR_FADE_DELAY * 15 + id * 0.05}
-                >
-                  <HackathonCard
-                    title={project.title}
-                    description={project.description}
-                    location={project.location}
-                    dates={project.dates}
-                    image={project.image}
-                    links={project.links}
-                  />
-                </BlurFade>
-              ))}
-            </ul>
+          {DATA.research?.map((research, id) => (
+            <BlurFade
+              key={research.agency}
+              delay={BLUR_FADE_DELAY * 14 + id * 0.05}
+            >
+              <ResumeCard
+                key={research.agency}
+                href={research.href}
+                logoUrl={research.logoUrl}
+                altText={research.agency}
+                title={research.agency}
+                subtitle={research.title}
+                period={research.period}
+                description={`${research.role} - ${research.description}`}
+              />
+            </BlurFade>
+          ))}
+        </div>
+      </section>
+      <section id="publications">
+        <div className="flex min-h-0 flex-col gap-y-3">
+          <BlurFade delay={BLUR_FADE_DELAY * 15}>
+            <h2 className="text-xl font-bold">Publications</h2>
           </BlurFade>
+          {DATA.publications?.map((pub, id) => (
+            <BlurFade
+              key={pub.title}
+              delay={BLUR_FADE_DELAY * 16 + id * 0.05}
+            >
+              <ResumeCard
+                key={pub.title}
+                title={pub.title}
+                subtitle={`${pub.conference} • ${pub.date}`}
+                description={`Authors: ${pub.authors}${pub.award ? ` • ${pub.award}` : ''}`}
+              />
+            </BlurFade>
+          ))}
         </div>
       </section>
       <section id="contact">
         <div className="grid items-center justify-center gap-4 px-4 text-center md:px-6 w-full py-12">
-          <BlurFade delay={BLUR_FADE_DELAY * 16}>
+          <BlurFade delay={BLUR_FADE_DELAY * 17}>
             <div className="space-y-3">
               <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
                 Contact
               </div>
               <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                Get in Touch
+                연락하기
               </h2>
               <p className="mx-auto max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Want to chat? Just shoot me a dm{" "}
+                대화하고 싶으신가요? 궁금한 점이 있다면 언제든지{" "}
                 <Link
-                  href={DATA.contact.social.X.url}
+                  href={`mailto:${DATA.contact.email}`}
                   className="text-blue-500 hover:underline"
                 >
-                  with a direct question on twitter
-                </Link>{" "}
-                and I&apos;ll respond whenever I can. I will ignore all
-                soliciting.
+                  이메일
+                </Link>
+                을 보내주세요. 가능한 한 빨리 답변드리겠습니다. 광고성 메시지는 무시합니다.
               </p>
             </div>
           </BlurFade>
