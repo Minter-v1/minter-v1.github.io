@@ -163,6 +163,8 @@ export default function Page() {
               <ResumeCard
                 key={pub.title}
                 title={pub.title}
+                altText="text"
+                period="text"
                 subtitle={`${pub.conference} • ${pub.date}`}
                 description={`Authors: ${pub.authors}${pub.award ? ` • ${pub.award}` : ''}`}
               />
