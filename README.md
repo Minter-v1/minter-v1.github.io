@@ -42,6 +42,15 @@ Built with next.js, [shadcn/ui](https://ui.shadcn.com/), and [magic ui](https://
 
 5. Open the [Config file](./src/data/resume.tsx) and make changes
 
+## Deploying to GitHub Pages
+
+With the provided GitHub Actions workflow, pushing to `main` will build a static export and publish it to GitHub Pages automatically.
+
+1. Enable GitHub Pages in your repository settings and choose **GitHub Actions** as the source.
+2. The workflow detects whether the repository name matches `<username>.github.io` and configures the correct base path automatically.
+3. For custom domains, set `NEXT_PUBLIC_SITE_URL` and (optionally) `NEXT_PUBLIC_BASE_PATH` repository variables so metadata points to the correct URL.
+4. You can trigger a manual deployment via the *Run workflow* button if needed.
+
 # License
 
 Licensed under the [MIT license](https://github.com/dillionverma/portfolio/blob/main/LICENSE.md).

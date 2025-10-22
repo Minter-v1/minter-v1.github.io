@@ -1,10 +1,43 @@
 import { Icons } from "@/components/icons";
 import { HomeIcon, NotebookIcon } from "lucide-react";
 
+function normalizeBasePath(input: string | undefined) {
+  if (!input) return "";
+
+  let candidate = input;
+
+  if (candidate.includes("://")) {
+    try {
+      const url = new URL(candidate);
+      candidate = url.pathname || "";
+    } catch {
+      candidate = "";
+    }
+  }
+
+  if (!candidate) return "";
+
+  if (!candidate.startsWith("/")) {
+    candidate = `/${candidate}`;
+  }
+
+  candidate = candidate.replace(/\/+$/, "");
+
+  return candidate === "/" ? "" : candidate;
+}
+
+const SITE_BASE_PATH = normalizeBasePath(process.env.NEXT_PUBLIC_BASE_PATH);
+const SITE_URL_ROOT =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://minter-v1.github.io";
+const SITE_URL =
+  SITE_BASE_PATH && SITE_BASE_PATH !== "/"
+    ? `${SITE_URL_ROOT.replace(/\/$/, "")}${SITE_BASE_PATH}`
+    : SITE_URL_ROOT;
+
 export const DATA = {
   name: "Minji Lee",
   initials: "ML",
-  url: "https://github.com/Minter-v1",
+  url: SITE_URL,
   location: "Daejeon, South Korea",
   locationLink: "https://www.google.com/maps/place/daejeon",
   description:
